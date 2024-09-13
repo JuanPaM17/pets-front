@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+	<!--begin::Header-->
+	<meta name="author" content="Business Management Nitro">
+	<meta name="description" content="">
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<!--begin::Fonts-->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>
+	<!--end::Fonts-->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<!--end::Page Vendors Styles-->
+	<!--begin::Global Theme Styles(used by all pages)-->
+	<link href="/metronic/theme/html/demo1/dist/assets/plugins/global/plugins.bundle.css?v=7.2.9" rel="stylesheet" type="text/css" />
+	<link href="/metronic/theme/html/demo1/dist/assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.2.9" rel="stylesheet" type="text/css" />
+	<link href="/metronic/theme/html/demo1/dist/assets/css/style.bundle.css?v=7.2.9" rel="stylesheet" type="text/css" />
+	<!--begin::amCharts-->
+	<link href="//www.amcharts.com/lib/3/plugins/export/export.css" rel="stylesheet" type="text/css"/>
+	<!--end::amCharts-->
+	<!--begin::Layout Themes(used by all pages)-->
+	<link href="/metronic/theme/html/demo1/dist/assets/css/themes/layout/header/base/light.css?v=7.2.9" rel="stylesheet" type="text/css" />
+	<link href="/metronic/theme/html/demo1/dist/assets/css/themes/layout/header/menu/light.css?v=7.2.9" rel="stylesheet" type="text/css" />
+	<link href="/metronic/theme/html/demo1/dist/assets/css/themes/layout/brand/light.css?v=7.2.9" rel="stylesheet" type="text/css" />
+	<link href="/metronic/theme/html/demo1/dist/assets/css/themes/layout/aside/light.css?v=7.2.9" rel="stylesheet" type="text/css" />
+	<!--end::Layout Themes-->
+	<!--end::Layout-->
+	<!--begin::Icon-->
+	<link rel="shortcut icon" href="images/favicon.png" />
+	<!--end::Icon-->
+	<!--end::Head-->
+</head>
+<div th:fragment="scripts">
+	<!--begin::imports:scripts-->
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<!-- ToolKit -->
+	<script src="/global/_commonUtils.js"></script>
+	<!--begin::Global Config(global config for global JS scripts)-->
+	<script src="/metronic/theme/html/demo1/dist/assets/js/scripts.js"></script>
+	<!--end::Global Config-->
+	<!--begin::Global Theme Bundle(used by all pages)-->
+	<script src="/metronic/theme/html/demo1/dist/assets/plugins/global/plugins.bundle.js?v=7.2.9"></script>
+	<script src="/metronic/theme/html/demo1/dist/assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.2.9"></script>
+	<script src="/metronic/theme/html/demo1/dist/assets/js/scripts.bundle.js?v=7.2.9"></script>
+	<script src="/metronic/theme/html/demo1/dist/assets/js/pages/crud/forms/widgets/bootstrap-datepicker.js?v=7.2.9"></script>
+	<script src="/metronic/theme/html/demo1/dist/assets/js/pages/crud/forms/widgets/bootstrap-maxlength.js?v=7.2.9"></script>
+	<script src="/metronic/theme/html/demo1/dist/assets/js/pages/crud/forms/widgets/tagify.js?v=7.2.9"></script>
+	<script src="/metronic/theme/html/demo1/dist/assets/js/pages/crud/forms/widgets/form-repeater.js?v=7.2.9"></script>
+	<script src="/metronic/theme/html/demo1/dist/assets/js/pages/features/charts/apexcharts.js?v=7.2.9"></script>
+	<script src="/metronic/theme/html/demo1/dist/assets/js/pages/features/miscellaneous/dual-listbox.js?v=7.2.9"></script>
+	<!--end::Global Theme Bundle-->
+	<!--end::imports:scripts-->
+	<script th:inline="javascript" defer>
+		var REGISTER_LIMIT_PER_PAGE = 5;
+		var optionsMap = optionsMap || {};
+		const pageId = /*[[${pageId}]]*/ "pageId";
+		optionsMap['pageId'] = pageId;
+	</script>
+</div>
+</html>

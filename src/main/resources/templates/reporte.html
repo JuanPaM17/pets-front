@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Reportes</title>
+<th:replace th:insert="~{modules/_imports :: head}"></th:replace>
+</head>
+<body>
+	<div th:replace="~{modules/header}"></div>
+	<div class="container row ml-6">
+		<div class="container mt-3">
+			<div class="alert alert-success d-none" th:id="${pageId}+'_alert_success'" role="alert"></div>
+			<div class="alert alert-danger d-none" th:id="${pageId}+'_alert_danger'" role="alert"></div>
+			<div class="alert alert-warning d-none" th:id="${pageId}+'_alert_warning'" role="alert"></div>
+		</div>
+		<div class="container">
+			<div th:id="${pageId}+'_centralizedTable'" class="mt-5"></div>
+			<div class="alert alert-success d-none" th:id="${modalReportId}+'_report_alert_success'" role="alert"></div>
+			<div class="alert alert-danger d-none" th:id="${modalReportId}+'_report_alert_danger'" role="alert"></div>
+			<div class="alert alert-warning d-none" th:id="${modalReportId}+'_report_alert_warning'" role="alert"></div>
+			<div th:id="${pageId}+'_centralizedPagination'" class="d-flex justify-content-between align-items-center flex-wrap mt-5"></div>
+		</div>
+	</div>
+	<!-- Begin::Modal-->
+	<div class="modal fade" id="modal_detail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-xl" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Informacion de mascotas</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<i aria-hidden="true" class="ki ki-close"></i>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+                    	<div class="container">
+                        	<div th:id="${pageIdDetail}+'_centralizedTable'"></div>
+                        	<div th:id="${pageIdDetail}+'_centralizedPagination'" class="d-flex justify-content-between align-items-center flex-wrap mt-5"></div>
+                 		</div>
+                	</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-light-primary font-weight-bold mr-2" data-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End::Modal-->
+	<th:replace th:insert="~{modules/_imports :: scripts}"></th:replace>
+	<script th:src="@{/reporte.js}"></script>
+	<script th:inline="javascript">
+		const pageIdDetail = /*[[${pageIdDetail}]]*/"pageIdDetail";	
+	
+		let titles = {};
+		titles['id'] = "#";
+		titles['cedula'] = "Cedula";
+		titles['nombreCompleto'] = "Nombre";
+		titles['buttonMoreInformation'] = "";
+
+		let titlesDetail = {};
+		titlesDetail['#'] = "#";
+		titlesDetail['nombre'] = "Nombre";
+		titlesDetail['identificacion'] = "Identificacion";
+		titlesDetail['medicamento'] = "Medicamento";
+		
+		init();
+	</script>
+</body>
+</html>

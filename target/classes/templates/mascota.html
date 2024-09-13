@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Mascotas</title>
+<th:replace th:insert="~{modules/_imports :: head}"></th:replace>
+</head>
+<body>
+	<div th:replace="~{modules/header}"></div>
+	<div class="container row ml-6">
+		<div class="col-12 text-right mt-6">
+			<div class="btn-group dropright">
+			   <div class="dropdown">
+				    <button th:attr="onclick='_clearId(\'' + ${pageId} + '\');'" class="btn btn-light-primary font-weight-bold mr-2" type="button" data-toggle="modal" th:data-target="'#' + ${pageId} + '_modal_form'">
+				        Nuevo
+				    </button>
+				</div>
+			</div>
+		</div>
+		<div class="container mt-3">
+			<div class="alert alert-success d-none" th:id="${pageId}+'_alert_success'" role="alert"></div>
+			<div class="alert alert-danger d-none" th:id="${pageId}+'_alert_danger'" role="alert"></div>
+			<div class="alert alert-warning d-none" th:id="${pageId}+'_alert_warning'" role="alert"></div>
+		</div>
+		<div class="container">
+			<div th:id="${pageId}+'_centralizedTable'" class="mt-5"></div>
+			<div th:id="${pageId}+'_centralizedPagination'" class="d-flex justify-content-between align-items-center flex-wrap mt-5"></div>
+		</div>
+	</div>
+	<!-- Begin::Modal-->
+	<div class="modal fade" th:id="${pageId}+'_modal_form'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <h5 class="modal-title" id="exampleModalLabel">Cliente</h5>
+	                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                    <i aria-hidden="true" class="ki ki-close"></i>
+	                </button>
+	            </div>
+	            <div class="modal-body">
+	                <form th:id="${pageId}+'_form'">
+						<input type="text" class="form-control d-none" id="id" name="id">
+						<div class="row">
+							<div class="col-12 col-md-6 col-sm-6">
+								<div class="mb-3">
+									<label for="identificacion" class="col-form-label">Identificacion:</label>
+									<input required type="number" class="form-control" id="identificacion" name="identificacion">
+								</div>
+							</div>
+							<div class="col-12 col-md-6 col-sm-6">
+								<div class="mb-3">
+									<label for="nombre" class="col-form-label">Nombre:</label>
+									<input required type="text" class="form-control" id="nombre" name="nombre">
+								</div>
+							</div>
+							<div class="col-12 col-md-6 col-sm-6">
+								<div class="mb-3">
+									<label for="raza" class="col-form-label">Raza:</label>
+									<input required type="text" class="form-control" id="raza" name="raza">
+								</div>
+							</div>
+							<div class="col-12 col-md-6 col-sm-6">
+								<div class="mb-3">
+									<label for="edad" class="col-form-label">Edad:</label>
+									<input required type="number" class="form-control" id="edad" name="edad">
+								</div>
+							</div>
+							<div class="col-12 col-md-6 col-sm-6">
+								<div class="mb-3">
+									<label for="peso" class="col-form-label">Peso:</label>
+									<input required type="number" class="form-control" id="peso" name="peso">
+								</div>
+							</div>
+							<div class="col-12">
+								<div class="mb-3">
+									<label for="productos" class="col-form-label">Cliente:</label>
+									<div class="typeahead">
+										<span class="twitter-typeahead">
+											<input class="form-control tt-hint d-none" type="text" dir="ltr" readonly="" autocomplete="off" spellcheck="false" tabindex="-1">
+											<input class="form-control tt-input" id="cliente_th" type="text" dir="ltr" c placeholder="Selecciona un cliente" autocomplete="off" spellcheck="false">
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-12">
+								<div class="mb-3">
+									<label for="productos" class="col-form-label">Medicamento:</label>
+									<div class="typeahead">
+										<span class="twitter-typeahead">
+											<input class="form-control tt-hint d-none" type="text" dir="ltr" readonly="" autocomplete="off" spellcheck="false" tabindex="-1">
+											<input class="form-control tt-input" id="medicamento_th" type="text" dir="ltr" placeholder="Selecciona un medicamente" autocomplete="off" spellcheck="false">
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+	            </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-light-primary font-weight-bold mr-2" data-dismiss="modal">Cerrar</button>
+	                <button onclick="validateAndSend();" type="button" class="btn btn-light-primary font-weight-bold mr-2">Guardar</button>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<!-- End::Modal-->
+	<th:replace th:insert="~{modules/_imports :: scripts}"></th:replace>
+	<script th:src="@{/mascota.js}"></script>
+	<script>
+		let titles = {};
+		titles['id'] = "#";
+		titles['identificacion'] = "Identificacion";
+		titles['nombre'] = "Nombre";
+		titles['raza'] = "Raza";
+		titles['edad'] = "Edad";
+		titles['peso'] = "Peso";
+		titles['cliente'] = "Cliente";
+		titles['medicamento'] = "Medicamento";
+
+		const dropdown = [];
+		dropdown.push({
+			name : "edit",
+			label : "Editar",
+			method : "_loadForm",
+			modal : pageId + "_modal_form"
+		});
+
+		dropdown.push({
+			name : "delete",
+			label : "Eliminar",
+			method : "deleteRegistry"
+		});
+
+		init();
+	</script>
+</body>
+</html>
